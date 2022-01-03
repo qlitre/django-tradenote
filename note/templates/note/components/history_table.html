@@ -1,0 +1,38 @@
+{% load humanize %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Commission</th>
+      <th scope="col">Ammount</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for history in transaction.history_set.all|dictsort:"date_trade"  %}
+    <tr>
+      <th>{{ history.date_trade|date:'Y-m-d' }}</th>
+      <th>{{ history.trading_category }}</th>
+      <th>{{ history.price|intcomma }}</th>
+      <th>{{ history.quantity|intcomma }}</th>
+      <th>{{ history.commission|intcomma }}</th>
+      <th>{{ history.amount|intcomma }}</th>
+      <th>
+        <button type="button" class="btn btn-rounded btn-sm btn-danger delete-modal-button"
+        data-mdb-toggle="modal"
+        data-mdb-target="#historyDeleteModal"
+        data-deleteurl="{% url 'note:history_delete' history.pk %}"
+        data-datetrade="{{ history.date_trade|date:'Y-m-d' }}"
+        data-tradingcategory="{{ history.trading_category }}"
+        data-amount="{{ history.amount }}">
+        Delete
+        </button>
+      </th>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

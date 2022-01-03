@@ -1,0 +1,47 @@
+{% load humanize %}
+
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">DateEntry</th>
+      <th scope="col">DateClose</th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+      <th scope="col">Results</th>
+      <th scope="col">Benefit</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in transaction_list  %}
+    <tr>
+      <th>{{ t.pk }}</th>
+      <th>{{ t.date_entry　| date:'Y-m-d' }}</th>
+      <th>{{ t.date_close　| date:'Y-m-d' }}</th>
+      <th>{{ t.ticker_code }}</th>
+      <th><a href="{% url 'note:detail' t.pk %}">{{ t.ticker_name }}</a></th>
+
+      <th>
+        <span class="badge bg-{{t.status.color}} ls-widest">{{ t.status.name }}</span>
+      </th>
+      <th>
+        <span class="badge bg-{{t.result.color}} ls-widest">{{ t.result.name }}</span>
+      </th>
+      <th>
+        {% if t.benefit > 0 %}
+        <span class="text-success">+{{ t.benefit|intcomma }}</span>
+        {% elif t.benefit < 0 %}
+        <span class="text-danger">{{ t.benefit|intcomma }}</span>
+        {% else %}
+        {{ t.benefit|intcomma }}
+        {% endif %}
+      </th>
+      <th>
+        <a href="{% url 'note:transaction_update' t.pk %}"><i class="fas fa-edit fs-5"></i></a>
+      </th>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

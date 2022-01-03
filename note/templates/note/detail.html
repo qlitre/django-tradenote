@@ -1,0 +1,63 @@
+{% extends "note/base.html" %}
+{% load note %}
+
+{% block content %}
+<h1 class="mt-2">
+  <a href="{% url 'note:transaction_update' transaction.pk %}">
+    {{ transaction.ticker_code }} {{ transaction.ticker_name }}
+  </a>
+</h1>
+<h4 class="mt-4">Reason</h4>
+<p class="mt-2">{{ transaction.reason|linebreaks }}</p>
+<h4 class="mt-4">Memo</h4>
+<hr>
+<div class="markdown-text">
+  {{ transaction.memo|markdown_to_html }}
+</div>
+<hr>
+<h4 class="text-center mt-2">History</h4>
+
+<button type="button" class="mt-2 btn btn-sm btn-rounded btn-primary" data-mdb-toggle="modal" data-mdb-target="#historyCreateModal">
+  Register
+</button>
+
+{% include "note/components/history_table.html" %}
+
+{% include "note/components/history_create_modal.html" %}
+
+{% include "note/components/history_delete_modal.html" %}
+
+{% endblock %}
+{% block extrajs %}
+<!-- date picker -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+  $(function() {
+    $('#id_date_trade').datepicker({
+      dateFormat: 'yy-mm-dd',
+      firstDay: 1,
+      dayNamesMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      showOtherMonths: true,
+      selectOtherMonths: true
+    });
+  })
+  const deleteModalButtons = document.getElementsByClassName('delete-modal-button');
+
+  const deleteForm = document.getElementById('delete-form');
+  const deleteDate = document.getElementById('delete-date')
+  const deleteCategory = document.getElementById('delete-category')
+  const deleteAmount = document.getElementById('delete-amount')
+
+  for (const button of deleteModalButtons) {
+    button.addEventListener('click', () => {
+      deleteForm.action = button.dataset.deleteurl;
+      deleteDate.textContent = `Date : ${button.dataset.datetrade}`;
+      deleteCategory.textContent = `Category : ${button.dataset.tradingcategory}`;
+      deleteAmount.textContent = `Amount : ${button.dataset.amount}`;
+    });
+  }
+</script>
+{% endblock %}

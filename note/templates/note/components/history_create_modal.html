@@ -1,0 +1,42 @@
+<div class="modal fade" id="historyCreateModal" tabindex="-1" aria-labelledby="historyCreateModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="mt-5" action="{% url 'note:history_create' transaction.pk %}" method="POST">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="historyCreateModalLabel">Register History</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="form-label" for="id_date_trade">Date</label>
+              {{ history_create_form.date_trade }}
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" for="id_trading_category">Category</label>
+              {{ history_create_form.trading_category }}
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-md-4">
+              {{ history_create_form.price }}
+            </div>
+            <div class="col-md-4">
+              {{ history_create_form.quantity }}
+            </div>
+            <div class="col-md-4">
+              {{ history_create_form.commission }}
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit" name="button">Send</button>
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

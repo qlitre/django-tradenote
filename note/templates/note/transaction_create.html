@@ -1,0 +1,85 @@
+{% extends "note/base.html" %}
+
+{% block content %}
+<form class="mt-4" method="POST">
+  {% csrf_token %}
+  {{ form.media }}
+  <div class="row mt-2">
+    <div class="col-md-2">
+      <label class="form-label" for="id_status">Status</label>
+      {{ form.status }}
+    </div>
+    <div class="col-md-2">
+      <label class="form-label" for="id_result">Result</label>
+      {{ form.result }}
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-2">
+      <label class="form-label" for="id_date_entry">DateEntry</label>
+      {{ form.date_entry }}
+    </div>
+    <div class="col-md-2">
+      <label class="form-label" for="id_date_close">DateClose</label>
+      {{ form.date_close }}
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-2">
+      <label class="form-label" for="id_benefit">Benefit</label>
+      {{ form.benefit }}
+      <!-- 追加 -->
+      {% if benefit %}
+        <p class="text-secondary mt-2">{{ benefit }}</p>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="mt-2">
+        <label class="form-label" for="id_ticker_code">TickerCode</label>
+        {{ form.ticker_code }}
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="mt-2">
+        <label class="form-label" for="id_ticker_name">TickerName</label>
+        {{ form.ticker_name }}
+      </div>
+    </div>
+  </div>
+  <div class="mt-3">
+    <label class="form-label" for="id_reason">Reason</label>
+    {{ form.reason }}
+  </div>
+  <div class="mt-2">
+    <label class="form-label" for="id_memo">Memo</label>
+    {{ form.memo }}
+  </div>
+
+  <button class="btn btn-primary mt-5" type="submit">Send</button>
+
+</form>
+
+{% endblock %}
+{% block extrajs %}
+<!-- date picker -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+  const config = {
+    dateFormat: 'yy-mm-dd',
+    firstDay: 1,
+    dayNamesMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+    monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    showOtherMonths: true,
+    selectOtherMonths: true
+  }
+
+  $(function() {
+    $('#id_date_entry').datepicker(config);
+    $('#id_date_close').datepicker(config);
+  })
+</script>
+{% endblock %}

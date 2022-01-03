@@ -1,0 +1,89 @@
+/* note/static/note/css/style.css */
+
+/* マークダウン関連 */
+.markdown-text * {
+  margin-top: 0;
+  margin-bottom: 1em;
+  line-height: 2.0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.markdown-text p {
+  line-height: 2.0;
+}
+
+.markdown-text strong {
+  background-color: yellow;
+}
+
+.markdown-text img {
+  display: block;
+  max-width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: auto;
+  border: solid 1px #ccc;
+}
+
+.markdown-text p code {
+  background-color: #eee;
+  color: #333;
+  padding: 0.2em 0.4em;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.markdown-text pre {
+  line-height: 1.2;
+  background-color: #1D1F21;
+  padding: 2% 4%;
+  overflow-x: scroll;
+}
+
+.markdown-text pre * {
+  margin-bottom: 0;
+}
+
+.markdown-text blockquote {
+  padding: 10px 15px;
+  border-left: 5px solid #ccc;
+  border-radius: 2px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.markdown-text h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.markdown-text h2,
+.markdown-text h3 {
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.markdown-text .cp_embed_wrapper {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.markdown-text ul, .markdown-text ol {
+  padding-left: 1.5em;
+  margin: 1.5em 0;
+  line-height: 1.9;
+}
+
+.markdown-text ul {
+  list-style-type: disc;
+}
+
+.markdown-text ol {
+  list-style-type: decimal;
+}

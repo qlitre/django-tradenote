@@ -1,0 +1,4 @@
+django~=3.2.1
+django-mdeditor~=0.1.18
+Markdown~=3.3.6
+django-pandas~=0.6.6

@@ -1,0 +1,41 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text / html; charset = utf-8" />
+  <title>Trade Note</title>
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'note/css/style.css' %}">
+</head>
+
+<body>
+  <!-- header -->
+  {% include "note/components/header.html" %}
+
+  <div class="container pt-5 pb-5">
+    <!-- breadcrumbs -->
+    {% include "note/components/breadcrumbs.html" %}
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- footer -->
+  {% include "note/components/footer.html" %}
+
+
+  <!-- MDB -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"></script>
+  {% block extrajs %}{% endblock %}
+
+</body>
+
+</html>

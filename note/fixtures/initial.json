@@ -1,0 +1,33 @@
+[{
+    "model": "note.status",
+    "pk": 1,
+    "fields": {
+      "name": "Holding",
+      "color": "warning"
+    }
+  },
+  {
+    "model": "note.status",
+    "pk": 2,
+    "fields": {
+      "name": "Close",
+      "color": "info"
+    }
+  },
+  {
+    "model": "note.result",
+    "pk": 1,
+    "fields": {
+      "name": "Win",
+      "color": "success"
+    }
+  },
+  {
+    "model": "note.result",
+    "pk": 2,
+    "fields": {
+      "name": "Lose",
+      "color": "danger"
+    }
+  }
+]
